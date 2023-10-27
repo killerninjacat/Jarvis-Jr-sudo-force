@@ -10,9 +10,9 @@ def hello(name):
 def chat_with_gpt(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role":"user", "content":prompt}]
+        messages=[{"role":"user", "content":"reply only with the bash command to do the following\n\n"+prompt}]
     )
-    return response
+    return response.choices[0].message.content.strip()
 
 def process_command(command):
     # if "delete a file" in command:
