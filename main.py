@@ -1,6 +1,7 @@
 import click
 import requests
 import openai
+import os
 
 openai.api_key="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"
 
@@ -18,7 +19,10 @@ def process_command(command):
     # if "delete a file" in command:
     #     file_name = input("Enter the file name to delete: ")
     #     print(f"Deleting file: {file_name}")
-    print(chat_with_gpt(command))
+    cmd = chat_with_gpt(command)
+    res = os.system(cmd)
+    print(cmd , res)
+    
 
 while True:
     user_input = input("Enter your command in plain English: ")
