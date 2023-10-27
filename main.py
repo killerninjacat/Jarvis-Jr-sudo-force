@@ -2,6 +2,7 @@ import click
 import requests
 import openai
 import os
+import tictactoeai
 
 def get_platform():
     if os.name == 'nt':
@@ -23,8 +24,6 @@ default_terminal = get_default_terminal()
 # print("Default Terminal: ", default_terminal)
 openai.api_key="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"
 
-# terminal = input("Enter what terminal you are using ")
-
 def hello(name):
     click.echo("Hello "+name)
 
@@ -36,9 +35,10 @@ def chat_with_gpt(prompt):
     return response.choices[0].message.content.strip()
 
 def process_command(command):
-    # if "delete a file" in command:
-    #     file_name = input("Enter the file name to delete: ")
-    #     print(f"Deleting file: {file_name}")
+    if ("tictactoe" in command) or ("tic tac toe") in command:
+        os.system("clear")
+        tictactoeai.init()
+        return
     cmd = chat_with_gpt(command)
     folderName = "folder_name"
     fileName = "file_name"
