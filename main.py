@@ -20,6 +20,14 @@ def process_command(command):
     #     file_name = input("Enter the file name to delete: ")
     #     print(f"Deleting file: {file_name}")
     cmd = chat_with_gpt(command)
+    folderName = "folder_name"
+    fileName = "file_name"
+    if("folder_name" in cmd):
+        folderName = input("Enter a folder name ")
+    if("file_name" in cmd):
+        fileName = input("Enter a file name ")
+    
+    cmd = cmd.replace("folder_name", folderName).replace("file_name", fileName)
     res = os.system(cmd)
     print(cmd , res)
     
