@@ -3,7 +3,27 @@ import requests
 import openai
 import os
 
+def get_platform():
+    if os.name == 'nt':
+        return 'Windows'
+    elif os.name == 'posix':
+        return 'macOS/Linux'
+    else:
+        return 'Unknown'
+
+platform = get_platform()
+
+def get_default_terminal():
+    if platform == "Windows":
+        return os.environ.get('ComSpec', 'cmd.exe')
+    elif platform == "macOS/Linux":
+        return os.environ.get('SHELL', '/bin/sh')
+
+default_terminal = get_default_terminal()
+print("Default Terminal: ", default_terminal)
 openai.api_key="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"
+
+# terminal = input("Enter what terminal you are using ")
 
 def hello(name):
     click.echo("Hello "+name)
@@ -11,7 +31,7 @@ def hello(name):
 def chat_with_gpt(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role":"user", "content":"reply only with the bash command to do the following\n\n"+prompt}]
+        messages=[{"role":"user", "content":f"extract the default terminal name from {default_terminal} reply only with the {default_terminal} command to do the following\n\n"+prompt}]
     )
     return response.choices[0].message.content.strip()
 
