@@ -20,8 +20,8 @@ def get_default_terminal():
         return os.environ.get('SHELL', '/bin/sh')
 
 default_terminal = get_default_terminal()
-print("Default Terminal: ", default_terminal)
-openai.api_key="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"
+# print("Default Terminal: ", default_terminal)
+openai.api_key="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"
 
 # terminal = input("Enter what terminal you are using ")
 
