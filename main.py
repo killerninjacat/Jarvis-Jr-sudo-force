@@ -48,8 +48,9 @@ openai.api_key="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"
 
 prompt_template="""reply in the following format
 {
-\""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action",
-"required details":"details required to perform the action like file name, folder name, etc in teh form of a python list. leave it empty if all details are already provided"
+\""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action.Only if details like file name or folder name is not already provided, use <placeholder> in its 
+place",
+"required details":"details required to perform the action like file name, folder name, etc in the form of a python list. leave it empty if all details are already provided"
 } to perform the below action
 
 """
@@ -95,7 +96,7 @@ def process_command(command):
                 print("Sorry, not sure of your current city")
                 city = input("Enter your current city: ")
             os.system("curl wttr.in/"+city)
-            say("Showing weather results.. ohhhhhhhhhhh its coold")
+            # say("Showing weather results.. ohhhhhhhhhhh its coold")
 
             return
 
@@ -116,33 +117,12 @@ def process_command(command):
             print(dictionary["bash command"])
             dictionary["bash command"] = dictionary["bash command"].replace(i, val)
     os.system(dictionary["bash command"])
-    print(type(cmd))
-    print(cmd)
-    if not (isinstance(cmd, dict)):
-        cmd = json.loads(cmd)
-    print(cmd["summary"])
-    # folderName = "folder_name"
-    # fileName = "file_name"
-    # if ("folder_name" in cmd):
-    #     folderName = input("Enter a folder name ")
-    # if ("file_name" in cmd or "filename" in cmd or ["filename"] in cmd):
-    #     fileName = input("Enter a file name ")
-    #     cmd.replace("file_name", fileName)
-    # # elif("file" in cmd):
-    # #     fileName = input("Enter a file name ")
-    # #     cmd.replace("file", fileName)
-    # cmd = cmd.replace("folder_name", folderName)
-    # res = os.system(cmd)
-    # # say("Action performed successfully")
 
-    # print(cmd , res)
 
-    # # cmd = cmd["command"].replace("folder_name", folderName)
-    # res = os.system(cmd["command"])
-    # if (cmd["summary"]):
-        # say(cmd["summary"])
 
-    # # print(cmd, res)
+  
+
+    print(cmd, res)
 
 
 while True:
