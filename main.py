@@ -151,7 +151,6 @@ def process_command(command):
         dictionary["bash command"] = dictionary["bash command"].replace("<"+i+">", val)
     os.system(dictionary["bash command"])
 
-
 while True:
     choice = session.prompt(
         "Click 1 to enter the command in plain english, Click 2 for Speech recognition  ")
