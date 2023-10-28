@@ -2,12 +2,16 @@ import click
 import requests
 import json
 import openai
+import time as t
 import os
 import tictactoeai
+from threading import Thread
 import functions
 from rich import print
 from listen import Listen
 from speech import say
+from alarm import alarm
+
 
 
 from prompt_toolkit import PromptSession
@@ -100,6 +104,12 @@ def process_command(command):
 
         if (command in ["stopwatch", "stop watch"]):
             functions.stopwatch()
+            return
+
+        if ("alarm" in command):
+            thread = Thread(target=alarm, daemon=True, name="alarm")
+            thread.start()
+            t.sleep(1)
             return
 
         if ("weather" in command):
