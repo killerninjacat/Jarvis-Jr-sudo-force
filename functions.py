@@ -23,10 +23,15 @@ def find_audio_folders(search_path):
         return None
 
 def playMusic():
-    music_folder_current_user = os.path.join(os.path.expanduser("~"), "Music")
+    music_folder_current_user = os.path.join(os.path.expanduser("~"))
     print("Music Folder for Current User:", music_folder_current_user)
+    print("Searching for media files...")
     
     files = os.listdir(music_folder_current_user)
+    for foldername, subfolders, filenames in os.walk(music_folder_current_user):
+        for filename in filenames:
+            file_path = os.path.join(foldername, filename)
+            files.append(file_path)
 
     audio_file_extensions = ['.mp3', '.wav', '.flac', '.mp4', '.mkv', '.webm', '.mov']
     audio_files = [file for file in files if any(file.lower().endswith(ext) for ext in audio_file_extensions)]
