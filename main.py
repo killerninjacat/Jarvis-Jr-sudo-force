@@ -13,7 +13,6 @@ from speech import say
 from alarm import alarm
 
 
-
 from prompt_toolkit import PromptSession
 from prompt_toolkit.styles import Style
 
