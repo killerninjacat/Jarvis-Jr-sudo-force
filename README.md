@@ -17,14 +17,14 @@ Welcome to Jarvis Jr, a revolutionary command line interface designed for users 
 - **Smart Input Analysis**: Jarvis Jr analyzes user input to accurately understand and execute tasks. For instance, if a user requests to "delete a file", the interface will inquire about the specific file to be deleted. Understands and executes complex commands related to creation of files, directories and sub-directories.
 
 - **Entertaining Features:**
-  - **Tic Tac Toe Game**: Enjoy a mini Tic Tac Toe game directly in the CLI.
-  - **Interactive Weather Display**: Access a graphical representation of weather data without leaving the command line.
-  - **Media Playback Control**: Navigate and open video and audio files using natural language commands.
+  - **Tic Tac Toe Game**: Enjoy a mini Tic Tac Toe game directly in the CLI.🎮
+  - **Interactive Weather Display**: Access a graphical representation of weather data without leaving the command line.🌦️
+  - **Media Playback**: Navigate and open video and audio files using natural language commands.🎵
 
 
 ## Tech Stack Used
 
-**1. Python**
+![Static Badge](https://img.shields.io/badge/Python-brightgreen)
 
 ## Getting Started
 
