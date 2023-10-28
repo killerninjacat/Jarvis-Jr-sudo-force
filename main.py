@@ -2,15 +2,12 @@ import click
 import requests
 import json
 import openai
-import time as t
 import os
 import tictactoeai
-from threading import Thread
 import functions
 from rich import print
 from listen import Listen
 from speech import say
-from alarm import alarm
 
 
 from prompt_toolkit import PromptSession
@@ -105,12 +102,6 @@ def process_command(command):
             functions.stopwatch()
             return
 
-        if ("alarm" in command):
-            thread = Thread(target=alarm, daemon=True, name="alarm")
-            thread.start()
-            t.sleep(1)
-            return
-
         if ("weather" in command):
             output = requests.get("https://www.wttr.in")
             city = ""
@@ -156,9 +147,7 @@ def process_command(command):
     os.system(dictionary[f"{default_terminal} command"])
     if (dictionary["summary"]):
         say(dictionary["summary"])
-        print(dictionary["bash command"])
-        dictionary["bash command"] = dictionary["bash command"].replace("<"+i+">", val)
-    os.system(dictionary["bash command"])
+
 
 while True:
     choice = session.prompt(
