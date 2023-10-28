@@ -80,7 +80,7 @@ def process_command(command):
 
 while True:
     user_input = input("Enter your command in plain English: ")
-    process_command(media_command(user_input))
+    process_command(user_input)
     ask_for_another = input("Do you want to perform another operation? (yes/no): ")
     if ask_for_another.lower() != "yes":
         print("Exiting...")
