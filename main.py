@@ -147,6 +147,9 @@ def process_command(command):
     os.system(dictionary[f"{default_terminal} command"])
     if (dictionary["summary"]):
         say(dictionary["summary"])
+        print(dictionary["bash command"])
+        dictionary["bash command"] = dictionary["bash command"].replace("<"+i+">", val)
+    os.system(dictionary["bash command"])
 
 
 while True:
