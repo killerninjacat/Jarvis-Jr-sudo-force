@@ -43,6 +43,7 @@ def get_default_terminal():
 
 
 default_terminal = get_default_terminal()
+<<<<<<< HEAD
 openai.api_key="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"
 
 
@@ -56,6 +57,10 @@ prompt_template="""reply in the following format
 """
 
 print(prompt_template)
+=======
+# print("Default Terminal: ", default_terminal)
+openai.api_key="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"
+>>>>>>> 4a7dde9 (feat(music))
 
 def hello(name):
     click.echo("Hello "+name)
@@ -68,6 +73,15 @@ def chat_with_gpt(prompt):
     )
     return response.choices[0].message.content.strip()
 
+<<<<<<< HEAD
+=======
+def media_command(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role":"user", "content":f"reply only with \"play media\" if the following query means to play media. Else, reply the exact text i entered\n\n"+prompt}]
+    )
+    return response.choices[0].message.content.strip()
+>>>>>>> 4a7dde9 (feat(music))
 
 def process_command(command):
     if not isinstance(command, dict):
@@ -106,6 +120,20 @@ def process_command(command):
         # s =  int(k[-2])
         functions.countdown(time)
         return
+<<<<<<< HEAD
+=======
+    if ("play" in command) and ("media" in command):
+        os.system("clear")
+        functions.playMusic()
+        return
+    cmd = chat_with_gpt(command)
+    folderName = "folder_name"
+    fileName = "file_name"
+    if("folder_name" in cmd):
+        folderName = input("Enter a folder name: ")
+    if("file_name" in cmd):
+        fileName = input("Enter a file name: ")
+>>>>>>> 4a7dde9 (feat(music))
     
     cmd = chat_with_gpt(prompt_template+command)
     print(cmd)
@@ -121,6 +149,7 @@ def process_command(command):
 
 
 while True:
+<<<<<<< HEAD
     user_input = session.prompt("Enter your command in plain English: ")
 
     # user_input = session.prompt("Enter your command in plain English: ")
@@ -128,6 +157,11 @@ while True:
     process_command(user_input)
     ask_for_another = input(
         "Do you want to perform another operation? (yes/no): ")
+=======
+    user_input = input("Enter your command in plain English: ")
+    process_command(media_command(user_input))
+    ask_for_another = input("Do you want to perform another operation? (yes/no): ")
+>>>>>>> 4a7dde9 (feat(music))
     if ask_for_another.lower() != "yes":
         print("Exiting...")
         break
