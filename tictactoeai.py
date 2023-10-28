@@ -81,11 +81,11 @@ def minimax(ismaximizing, depth, board):
          
 def playeplay():
     global winner
-    position = int(input("choose a place from 1 to 9"))
+    position = int(input("choose a place from 1 to 9: "))
     position -= 1
     while board[position] != "-":
         print("invalid input")
-        position = int(input("choose a place from 1 to 9"))
+        position = int(input("choose a place from 1 to 9: "))
         position -= 1
 
     board[position] = "X"

@@ -3,6 +3,7 @@ import requests
 import openai
 import os
 import tictactoeai
+import functions
 
 def get_platform():
     if os.name == 'nt':
@@ -50,7 +51,21 @@ def process_command(command):
     cmd = cmd.replace("folder_name", folderName).replace("file_name", fileName)
     res = os.system(cmd)
     print(cmd , res)
-    
+
+    if ("toss" in command) and ("coin" in command):  #check
+        os.system("clear")
+        functions.tossCoin()
+
+    if ("date" in command) and ("time" in command):
+        functions.dateAndTime()
+
+    if ("stopwatch" in command):
+        functions.stopwatch()
+
+    if ("countdown" in command):
+        k = command.split()
+        s =  int(k[-2])
+        functions.countdown(s)
 
 while True:
     user_input = input("Enter your command in plain English: ")
