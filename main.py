@@ -6,11 +6,13 @@ import os
 import tictactoeai
 import functions
 from rich import print
-from speech import say
+# from speech import say
 
 
 from prompt_toolkit import PromptSession
 from prompt_toolkit.styles import Style
+
+
 
 custom_style = Style.from_dict({
     'prompt': 'fg:#ff0066',
@@ -37,12 +39,23 @@ def get_default_terminal():
     if platform == "Windows":
         return "cmd"
     elif platform == "macOS/Linux":
-        return "Shell"
+        return "bash"
 
 
 default_terminal = get_default_terminal()
-openai.api_key = "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"
+openai.api_key="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"
 
+
+prompt_template="""reply in the following format
+{
+\""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action.If all required details are provided, required details should be empty. Only if details like file name or folder name are not already provided, use <placeholder> in its place",
+"required details":"list the placeholders in the bash command here in the form of a python list"
+} to perform the below action
+
+
+"""
+
+print(prompt_template)
 
 def hello(name):
     click.echo("Hello "+name)
@@ -51,12 +64,9 @@ def hello(name):
 def chat_with_gpt(prompt):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[
-            {"role": "user", "content": f"{prompt}"}]
+        messages=[{"role":"user", "content":prompt}]
     )
     return response.choices[0].message.content.strip()
-    # return "file deleted successfully"
-    # return "fuck you"
 
 
 def process_command(command):
@@ -86,42 +96,28 @@ def process_command(command):
                 print("Sorry, not sure of your current city")
                 city = input("Enter your current city: ")
             os.system("curl wttr.in/"+city)
-            say("Showing weather results.. ohhhhhhhhhhh its coold")
+            # say("Showing weather results.. ohhhhhhhhhhh its coold")
 
             return
 
-        if ("countdown" in command) or ("timer" in command):
-            time = chat_with_gpt(
-                f"below given sentence is a user generated sentence. find how long the timer should run, convert it to seconds and reply with only that message\n\n"+command)
-            # k = command.split()
-            # s =  int(k[-2])
-            functions.countdown(time)
-            return
-
-    cmd = chat_with_gpt(
-        f"provide the {default_terminal} command and a very short summary of the action (dont include this in command and dont include 'command:' just the command for the first is enough and give the short summary in past tense). return all this as a object datatypefor the following\n\n"+command)
-    folderName = "folder_name"
-    fileName = "file_name"
-    if ("folder_name" in cmd):
-        folderName = input("Enter a folder name ")
-    if ("file_name" in cmd):
-        fileName = input("Enter a file name ")
-        cmd.replace("file_name", fileName)
-    # elif ("file" in cmd):
-    #     fileName = input("Enter a file name ")
-    #     cmd.replace("file", fileName)
-    print(type(cmd))
+    if ("countdown" in command) or ("timer" in command):
+        time = chat_with_gpt(f"below given sentence is a user generated sentence. find how long the timer should run, convert it to seconds and reply with only that message\n\n"+command)
+        # k = command.split()
+        # s =  int(k[-2])
+        functions.countdown(time)
+        return
+    
+    cmd = chat_with_gpt(prompt_template+command)
     print(cmd)
-    if not (isinstance(cmd, dict)):
-        cmd = json.loads(cmd)
-    print(cmd["summary"])
+    dictionary = eval(cmd)
+    if( (isinstance(dictionary["required details"], list)) and len(dictionary["required details"])!=0):
+        print("Please fill the required details")
+        for i in dictionary["required details"]:
+            val = input(i+": ")
+            print(dictionary["bash command"])
+            dictionary["bash command"] = dictionary["bash command"].replace("<"+i+">", val)
+    os.system(dictionary["bash command"])
 
-    # cmd = cmd["command"].replace("folder_name", folderName)
-    res = os.system(cmd["command"])
-    if (cmd["summary"]):
-        say(cmd["summary"])
-
-    # print(cmd, res)
 
 
 while True:

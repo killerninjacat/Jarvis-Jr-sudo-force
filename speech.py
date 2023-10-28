@@ -1,6 +1,6 @@
 import pyttsx3
 
-engine = pyttsx3.init("sapi5")
+engine = pyttsx3.init("nsss")
 voices = engine.getProperty("voices")
 engine.setProperty("voices", voices[1].id)
 engine.setProperty("rate", 160)
