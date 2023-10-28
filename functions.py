@@ -9,20 +9,18 @@ def tossCoin():
     print(random.choice(["H", "T"]))
 
 
-def dateAndTime():
-    '''
-    if ("date" in commmand) and ("time" in command):
+def dateAndTime(command):
+
+    if ("date" in command) and ("time" in command):
         print(time.strftime('%Y-%m-%d %H:%M:%S'), end='\r')
-    elif ("date" in commmand):
+    elif ("date" in command):
         print(time.strftime('%Y-%m-%d'), end='\r')
     elif("time" in command):
         print(time.strftime('%H:%M:%S'), end='\r')
-   '''
-    while True:
+    else:
         print(time.strftime('%Y-%m-%d %H:%M:%S'), end='\r')
-        time.sleep(1)
+    print()
 
-import time
 
 def countdown(seconds):
     start = int(time.time()) + seconds

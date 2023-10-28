@@ -37,7 +37,7 @@ def pcplay():
     winner = None
     display_board()
     if check_game_over() and winner != None:
-        print("winner is ", winner, "/n")
+        print("winner is ", winner, "\n")
     elif check_game_over():
         print("It is a tie")
     else:
