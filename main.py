@@ -120,11 +120,6 @@ def process_command(command):
 
 
 
-  
-
-    print(cmd, res)
-
-
 while True:
     user_input = session.prompt("Enter your command in plain English: ")
 
