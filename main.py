@@ -98,7 +98,6 @@ def process_command(command):
         folderName = input("Enter a folder name ")
     if ("file_name" in cmd):
         fileName = input("Enter a file name ")
-<<<<<<< HEAD
         cmd.replace("file_name", fileName)
     elif("file" in cmd):
         fileName = input("Enter a file name ")
@@ -108,15 +107,6 @@ def process_command(command):
     say("Action performed successfully")
 
     print(cmd , res)
-=======
-
-    cmd = cmd.replace("folder_name", folderName).replace("file_name", fileName)
-    res = os.system(cmd)
-    say("Action performed successfully")
-
-    print(cmd, res)
-
->>>>>>> 0751544 (fix added few feat)
 
 while True:
     user_input = session.prompt("Enter your command in plain English: ")
