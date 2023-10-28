@@ -48,10 +48,10 @@ openai.api_key="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"
 
 prompt_template="""reply in the following format
 {
-\""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action.Only if details like file name or folder name is not already provided, use <placeholder> in its 
-place",
-"required details":"details required to perform the action like file name, folder name, etc in the form of a python list. leave it empty if all details are already provided"
+\""""+default_terminal+""" command":\""""+default_terminal+""" command to perform the action.If all required details are provided, required details should be empty. Only if details like file name or folder name are not already provided, use <placeholder> in its place",
+"required details":"list the placeholders in the bash command here in the form of a python list"
 } to perform the below action
+
 
 """
 
@@ -113,9 +113,9 @@ def process_command(command):
     if( (isinstance(dictionary["required details"], list)) and len(dictionary["required details"])!=0):
         print("Please fill the required details")
         for i in dictionary["required details"]:
-            val = input(i)
+            val = input(i+": ")
             print(dictionary["bash command"])
-            dictionary["bash command"] = dictionary["bash command"].replace(i, val)
+            dictionary["bash command"] = dictionary["bash command"].replace("<"+i+">", val)
     os.system(dictionary["bash command"])
 
 
