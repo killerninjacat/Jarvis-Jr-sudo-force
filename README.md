@@ -45,6 +45,20 @@ Welcome to Jarvis Jr, a revolutionary command line interface designed for sto in
   - tkinter
   - customTkinter
   - PIL
+  - click
+  - json
+  - openai
+  - rich
+  - typer
+  - random
+  - time
+  - enum
+  - sys
+  - types
+  - selectolax.parser
+  - pydantic
+  - inquirer
+  - yaspin
 
 ## Getting Started
 
