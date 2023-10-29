@@ -9,7 +9,7 @@ Welcome to Jarvis Jr, a revolutionary command line interface designed for sto in
 
 - **Speech-to-Text (STT) and Text-to-Speech (TTS) Integration**: Jarvis Jr can efficiently process voice inputs and provide clear voice feedback, enhancing accessibility and user experience.
 
-- **Advanced Functionality: Set alarms and timers, start countdowns and stopwatches,  effortlessly through the CLI using natural language, ensuring a user-friendly and intuitive way to manage tasks.
+- **Advanced Functionality**: Set alarms and timers, start countdowns and stopwatches,  effortlessly through the CLI using natural language, ensuring a user-friendly and intuitive way to manage tasks.
 
 - **Dynamic Prompt System**: The interface intelligently prompts users for additional information when required, creating a smooth and interactive experience that adapts to user needs.
 
@@ -27,13 +27,12 @@ Welcome to Jarvis Jr, a revolutionary command line interface designed for sto in
 
 
 ## Tech Stack
-- **Built With**
+### **Built With**
    - ![Static Badge](https://img.shields.io/badge/Python-brightgreen)
-
-- **Dependecies**
+### **Dependencies**
   - ChatGPT API
 
-- **Modules**
+### **Modules**
   - os
   - pyttsx3
   - speechrecognition
